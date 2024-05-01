@@ -3,7 +3,7 @@
 
 ## システム要件
 
-nghttp2 が必要になります。Debian の場合、次のコマンドで導入できます。
+nghttp2 が必要になります。開発環境は Debian 12 です。
 
 ```sh
 sudo apt install libnghttp2-dev
@@ -15,7 +15,7 @@ PHP のソースコードをビルドするためのツールも必要です
 sudo apt install build-essential autoconf libtool bison re2c pkg-config
 ```
 
-`configure` ファイルを生成するために `phpize` も導入する必要があります。Debian の場合、次のコマンドで導入できます。
+`configure` ファイルを生成するために `phpize` も導入する必要があります。
 
 
 ```sh
