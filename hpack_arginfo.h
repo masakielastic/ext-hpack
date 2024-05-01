@@ -1,9 +1,9 @@
-ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_test1, 0, 0, IS_VOID, 0)
+ZEND_BEGIN_ARG_WITH_RETURN_TYPE_INFO_EX(arginfo_hpack_encode, 0, 0, IS_ARRAY, 0)
 ZEND_END_ARG_INFO()
 
-ZEND_FUNCTION(test1);
+ZEND_FUNCTION(hpack_encode);
 
 static const zend_function_entry ext_functions[] = {
-	ZEND_FE(test1, arginfo_test1)
-	ZEND_FE_END
+        ZEND_FE(hpack_encode, arginfo_hpack_encode)
+        ZEND_FE_END
 };
