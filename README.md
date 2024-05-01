@@ -3,10 +3,23 @@
 
 ## システム要件
 
-nghttp2 をインストールする必要があります。Debian の場合、次のコマンドで導入できます。
+nghttp2 が必要になります。Debian の場合、次のコマンドで導入できます。
 
 ```sh
 sudo apt install libnghttp2-dev
+```
+
+PHP のソースコードをビルドするためのツールも必要です
+
+```sh
+sudo apt install build-essential autoconf libtool bison re2c pkg-config
+```
+
+`configure` ファイルを生成するために `phpize` も導入する必要があります。Debian の場合、次のコマンドで導入できます。
+
+
+```sh
+sudo apt install php8.2-dev
 ```
 
 ## ビルド
@@ -27,7 +40,7 @@ PHP スクリプトを用意して試してみましょう
 php -dextension=modules/hpack.so test.php
 ```
 
-```php:test.php
+```php
 <?php
 
 $headers = [
