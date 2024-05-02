@@ -89,7 +89,43 @@ PHP_FUNCTION(hpack_decode)
     ZEND_PARSE_PARAMETERS_END();
 
     rv = nghttp2_hd_inflate_new(&inflater);
+    size_t inlen = var_len;
+
+    zval ret;
+    zval arr;
+    array_init(&ret);
+
+    for (;;) {
+        nghttp2_nv nv;
+        int inflate_flags = 0;
+        size_t proclen;
+
+        rv = nghttp2_hd_inflate_hd(inflater, &nv, &inflate_flags, var, inlen, 1);
+
+        proclen = (size_t) rv;
+        var += proclen;
+        inlen -= proclen;
+
+        if (inflate_flags & NGHTTP2_HD_INFLATE_EMIT) {
+            array_init(&arr);
+            add_index_string(&arr, 0, nv.name);
+            add_index_string(&arr, 1, nv.value);
+            add_next_index_zval(&ret, &arr);
+       }
+
+        if (inflate_flags & NGHTTP2_HD_INFLATE_FINAL) {
+            nghttp2_hd_inflate_end_headers(inflater);
+            break;
+        }
+
+        if ((inflate_flags & NGHTTP2_HD_INFLATE_EMIT) == 0 && inlen == 0) {
+            break;
+        }
+    }
+
     nghttp2_hd_inflate_del(inflater);
+
+    RETURN_ZVAL(&ret, 0, 0);
 }
 /* }}} */
 
