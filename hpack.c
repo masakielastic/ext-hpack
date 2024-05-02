@@ -26,8 +26,6 @@
 /* {{{ string hpack_encode( array $input ) */
 PHP_FUNCTION(hpack_encode)
 {
-
-
     zval *input;
     size_t i;
     size_t sum;
@@ -73,6 +71,21 @@ PHP_FUNCTION(hpack_encode)
     RETURN_STR(retval);
     free(buf);
     nghttp2_hd_deflate_del(deflater);
+}
+/* }}} */
+
+
+/* {{{ array hpack_decode( string $input ) */
+PHP_FUNCTION(hpack_decode)
+{
+    char *var;
+    size_t var_len;
+    zend_string *retval;
+
+    ZEND_PARSE_PARAMETERS_START(1, 1)
+        Z_PARAM_STRING(var, var_len)
+    ZEND_PARSE_PARAMETERS_END();
+
 }
 /* }}} */
 
