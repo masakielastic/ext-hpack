@@ -81,11 +81,15 @@ PHP_FUNCTION(hpack_decode)
     char *var;
     size_t var_len;
     zend_string *retval;
+    ssize_t rv;
+    nghttp2_hd_inflater *inflater;
 
     ZEND_PARSE_PARAMETERS_START(1, 1)
         Z_PARAM_STRING(var, var_len)
     ZEND_PARSE_PARAMETERS_END();
 
+    rv = nghttp2_hd_inflate_new(&inflater);
+    nghttp2_hd_inflate_del(inflater);
 }
 /* }}} */
 
