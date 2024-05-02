@@ -51,7 +51,10 @@ $headers = [
     ["accept-encoding", "gzip, deflate"]
 ];
 
+$output = "\x87\x41\x88\x2f\x91\xd3\x5d\x05\x5c\xf6\x4d\x84\x7a\x87\xa0\xd1\xd5\x34\xe9\x4d\x62\x90";
+
 var_dump(
-    '8741882f91d35d055cf64d847a87a0d1d534e94d6290' === bin2hex(hpack_encode($headers))
+    $output === hpack_encode($headers),
+    $headers === hpack_decode($output)
 );
 ```
