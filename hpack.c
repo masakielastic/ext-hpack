@@ -23,7 +23,7 @@
         NGHTTP2_NV_FLAG_NONE                                                   \
   }
 
-/* {{{ string hpack_encode( [ array $input ] ) */
+/* {{{ string hpack_encode( array $input ) */
 PHP_FUNCTION(hpack_encode)
 {
 
