@@ -25,7 +25,7 @@ sudo apt install php8.2-dev
 ## ビルド
 
 ```sh
-git clone https://github.com/masakielastic/php-hpack.git
+git clone https://github.com/masakielastic/ext-hpack.git
 cd php-hpack
 phpize
 ./configure
